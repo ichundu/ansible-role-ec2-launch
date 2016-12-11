@@ -1,0 +1,24 @@
+---
+# tasks file for ec2-launch
+
+- name: Create ec2 instance/s
+  ec2:
+    aws_access_key: "{{ ec2_access_key }}"
+    aws_secret_key: "{{ ec2_secret_key }}"
+    count: "{{ ec2_launch_count }}"
+    id: "{{ ec2_launch_id }}"
+    image: "{{ ec2_launch_ami_id }}"
+    group: "{{ ec2_launch_group }}"
+    instance_tags:
+      Name: "{{ ec2_launch_tag_name }}"
+      class: "{{ ec2_launch_tag_class }}"
+    instance_type: "{{ ec2_launch_instance_type }}"
+    key_name: "{{ ec2_launch_key }}"
+    wait: true
+    region: "{{ ec2_launch_region }}"
+    state: present
+  register: ec2_launch
+
+- name: The following instances have been launched
+  debug:
+    var: ec2_launch

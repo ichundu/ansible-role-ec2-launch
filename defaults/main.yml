@@ -1,0 +1,5 @@
+---
+# defaults file for ec2-launch
+
+# t2.micro type instances are AWS free tier eligible
+ec2_launch_instance_type: "t2.micro"
