@@ -4,6 +4,9 @@ galaxy_info:
 
   license: license (GPLv2, CC-BY, etc)
 
+  platforms:
+    - name: Any
+
   min_ansible_version: 2.0
 
   galaxy_tags:
