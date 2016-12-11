@@ -1,13 +1,13 @@
 Role Name
 =========
 
-Launch a new ec2 instance
+ec2-launch
 
 Requirements
 ------------
 
-python >= 2.6
-boto
+- python >= 2.6
+- boto
 
 Role Variables
 --------------
