@@ -5,7 +5,9 @@ galaxy_info:
   license: GPLv2
 
   platforms:
-    - name: Any
+    - name: GenericUNIX
+      versions:
+        - any
 
   min_ansible_version: 2.2
 
