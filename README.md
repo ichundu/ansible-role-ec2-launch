@@ -39,7 +39,7 @@ When calling the role you should specify variables inside the playbook, inside a
 
     - hosts: localhost
       roles:
-         - role: ec2-launch
+         - role: ichundu.ec2-launch
 
 
 Author Information
