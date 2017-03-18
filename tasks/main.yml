@@ -1,20 +1,20 @@
 ---
 # tasks file for ec2-launch
 
-- name: Create ec2 instance/s
+- name: Create EC2 instance/s
   ec2:
     aws_access_key: "{{ ec2_access_key }}"
     aws_secret_key: "{{ ec2_secret_key }}"
-    count: "{{ ec2_launch_count }}"
     id: "{{ ec2_launch_id }}"
-    image: "{{ ec2_launch_ami_id }}"
-    group: "{{ ec2_launch_group }}"
+    count: "{{ ec2_launch_count }}"
+    image: "{{ ec2_launch_image }}"
+    group: "{{ ec2_launch_groups }}"
     instance_tags:
-      Name: "{{ ec2_launch_tag_name }}"
-      class: "{{ ec2_launch_tag_class }}"
+      Name: "{{ ec2_launch_name_tag }}"
+      class: "{{ ec2_launch_class_tag }}"
     instance_type: "{{ ec2_launch_instance_type }}"
-    key_name: "{{ ec2_launch_key }}"
-    wait: true
+    key_name: "{{ ec2_launch_key_name }}"
+    wait: True
     region: "{{ ec2_launch_region }}"
     state: present
   register: ec2_launch
@@ -22,3 +22,18 @@
 - name: The following instances have been launched
   debug:
     var: ec2_launch
+
+- name: Wait for instance/s to come up
+  wait_for:
+    host: "{{ item.public_ip }}"
+    port: 22
+    search_regex: "OpenSSH"
+    timeout: 90
+    delay: 20
+  with_items: "{{ ec2_launch.instances }}"
+
+- name: Add newly created instances to the hosts for the next play
+  add_host:
+    name: "{{ item.public_ip }}"
+    group: just_created
+  with_items: "{{ ec2_launch.instances }}"
