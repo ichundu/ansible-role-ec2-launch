@@ -1,7 +1,7 @@
-Role Name
-=========
+Role Name: ec2-launch
+=====================
 
-ec2-launch
+This role launches Amazon EC2 instances
 
 Requirements
 ------------
@@ -12,28 +12,36 @@ Requirements
 Role Variables
 --------------
 
-Almost every entry in ec2 module is defined via a variable to make the role as broad as possible. defaults/main.yml contains the variable:
+Almost every entry in ec2 module is defined via a variable to make the role as broad as possible. `defaults/main.yml` contains these variables, which are undefined:
 
-	ec2_launch_image_type: "t2.micro"
+|	Variable name	|	Default value	|	Description	|
+|-------------------|-------------------|---------------|
+| `ec2_launch_id` | "" | Instance launch ID, used for idempotency when specifying an existing running instance |
+| `ec2_launch_count` | "" | Number of instances to launch |
+| `ec2_launch_image` | "" | Instance image code, like `ami-xxxxxxxx` |
+| `ec2_launch_groups` | "" | Comma separated list of security groups to assign to the instance |
+| `ec2_launch_name_tag` | "" | Name tag of the instance |
+| `ec2_launch_class_tag` | "" | Class tag of the instance |
+| `ec2_launch_instance_type` | "" | EC2 [instance types](https://aws.amazon.com/ec2/instance-types/) |
+| `ec2_launch_key_name` | "" | Name of existing key pair to assign to the instance |
+| `ec2_launch_region` | "" | AWS region where the instance will be launched |
+
 
 With this type of instance you can launch free tier eligible instances.
 
 Dependencies
 ------------
 
-N/A
+None
 
 Example Playbook
 ----------------
 
-When calling the role you should specify variables in the playbook or a different vars file or via the interactive 'vars_prompt'
+When calling the role you should specify variables inside the playbook, inside a vars file in `group_vars`/`host_vars` or via the interactive 'vars_prompt'.
 
     - hosts: localhost
       roles:
          - role: ec2-launch
-	   ec2_launch_count: 1
-	   ec2_launch_ami_id: ami-e4c63e8b
-	   ....
 
 
 Author Information
