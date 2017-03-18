@@ -27,8 +27,6 @@ Almost every entry in ec2 module is defined via a variable to make the role as b
 | `ec2_launch_region` | `[]` | AWS region where the instance will be launched |
 
 
-With this type of instance you can launch free tier eligible instances.
-
 Dependencies
 ------------
 
