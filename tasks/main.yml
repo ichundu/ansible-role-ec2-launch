@@ -11,9 +11,7 @@
     count_tag: "{{ ec2_launch_count_tag | default(omit) }}"
     image: "{{ ec2_launch_image }}"
     group: "{{ ec2_launch_groups | default(omit) }}"
-    instance_tags:
-      Name: "{{ ec2_launch_name_tag | default(omit) }}"
-      class: "{{ ec2_launch_class_tag | default(omit) }}"
+    instance_tags: "{{ ec2_launch_instance_tags | default(omit) }}"
     instance_type: "{{ ec2_launch_instance_type }}"
     key_name: "{{ ec2_launch_key_name | default(omit) }}"
     wait: True
