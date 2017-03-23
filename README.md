@@ -22,7 +22,8 @@ Almost every entry in ec2 module is defined via a variable to make the role as b
 | `ec2_launch_exact_count` | N/A | An integer value which indicates how many instances that match the 'count_tag' parameter should be running. Instances are either created or terminated based on this value |
 | `ec2_launch_image` | N/A | Instance image code, like `ami-xxxxxxxx` |
 | `ec2_launch_groups` | N/A | Comma separated list of security groups to assign to the instance |
-| `ec2_launch_instance_tags` | N/A | Name tag of the instance |
+| `ec2_launch_tag_name` | N/A | Name tag of the instance |
+| `ec2_launch_tag_class` | N/A | Class tag of the instance |
 | `ec2_launch_instance_type` | N/A | EC2 [instance types](https://aws.amazon.com/ec2/instance-types/) |
 | `ec2_launch_key_name` | N/A | Name of existing key pair to assign to the instance |
 | `ec2_launch_region` | N/A | AWS region where the instance will be launched |
