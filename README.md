@@ -42,9 +42,11 @@ Example Playbook
 
 When calling the role you should specify variables inside the playbook, inside a vars file in `group_vars`/`host_vars` or via the interactive 'vars_prompt'.
 
+```yaml
     - hosts: localhost
       roles:
          - role: ichundu.ec2-launch
+```
 
 
 Author Information
